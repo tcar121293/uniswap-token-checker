@@ -1,9 +1,9 @@
-import { BuildOptions, DataTypes, Model, Sequelize } from "sequelize";
+import { BuildOptions, DataTypes, Model, Sequelize } from 'sequelize'
 
 export interface TokenAttributes {
     id?: number;
     name: string;
-    timestamp: string;
+    timestamp: number;
     createdAt?: Date;
     updatedAt?: Date;
 }
@@ -15,19 +15,19 @@ export type TokenStatic = typeof Model & {
 };
 
 export function TokenFactory (sequelize: Sequelize): TokenStatic {
-    return <TokenStatic>sequelize.define("tokens", {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-        },
-        timestamp: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-    })
+  return <TokenStatic>sequelize.define('tokens', {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    timestamp: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
+  })
 }
