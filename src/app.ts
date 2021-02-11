@@ -17,7 +17,6 @@ async function main () {
 
   try {
     const checker = new Checker(timestamp)
-    console.log(checker)
     setInterval(checker.checkNewToken, Number(process.env.TIME_INTERVAL) || 3000)
   } catch (err) {
     if (err instanceof UniswapError) {
