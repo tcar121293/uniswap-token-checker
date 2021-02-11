@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && node dist/app.js"
+    "start": "tsc && node dist/app.js",
+    "unit-tests": "npx jest --testPathPattern src/test/unit"
   },
   "repository": {
     "type": "git",
