@@ -6,15 +6,15 @@ import { IUniswapPair } from '../interfaces/IUniswap'
 import { UniswapError } from '../errors/UniswapError'
 
 export class Checker {
-    private timestamp: number | null
+    private lastTimestamp: number | null
 
     constructor (timestamp: number | null) {
-      this.timestamp = timestamp
+      this.lastTimestamp = timestamp
     }
 
   public checkNewToken = async () => {
-    const query = this.createQuery(this.timestamp)
-    // should be logger.trace
+    const query = this.createQuery(this.lastTimestamp)
+    // should be logger.debug
     console.log(`Sending request to uniswap with query ${query}`)
     let data
     try {
@@ -30,16 +30,19 @@ export class Checker {
       throw new UniswapError(err.message)
     }
 
-    if (data && data.data && data.data.data.pairs.length) {
-      // should be logger.debug
+    if (data && data.data && data.data.data && data.data.data.pairs &&
+        data.data.data.pairs.length) {
+      // logger.trace
       console.log(`Recieved data ${data.data.data.pairs}`)
       const { newTokens, currTimestamp } = this.processResult(data.data.data.pairs)
-      // logger.trace
+
+      // logger.debug
       console.log(`data to insert ${newTokens}`)
       await Token.bulkCreate(newTokens)
-      this.timestamp = currTimestamp
-      // logger.trace
-      console.log(`New timestamp: ${this.timestamp}`)
+      this.lastTimestamp = currTimestamp
+
+      // logger.debug
+      console.log(`New timestamp: ${this.lastTimestamp}`)
     }
   }
 
