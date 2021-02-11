@@ -10,7 +10,7 @@ import { db, Token } from './db'
 import { UniswapError } from './errors/UniswapError'
 
 db
-  .sync()
+  .sync({ force: process.env.DROP_DB || false })
   .then(() => {
     main()
   })
