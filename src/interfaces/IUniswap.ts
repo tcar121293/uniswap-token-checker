@@ -1,5 +1,5 @@
 
-export interface IUniswapPair{
+export interface IUniswapCheckNewTokenPair{
     createdAtTimestamp: number,
     id: string,
     token0: {

@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 import { Token } from '../db'
-import { IUniswapPair } from '../interfaces/IUniswap'
+import { IUniswapCheckNewTokenPair } from '../interfaces/IUniswap'
 import { UniswapError } from '../errors/UniswapError'
 
 export class Checker {
@@ -92,7 +92,7 @@ public createQuery = (timestamp: number | null): string => {
   }
 }
 
-private processResult (pairs: IUniswapPair[]) {
+private processResult (pairs: IUniswapCheckNewTokenPair[]) {
   const newTokens: {timestamp: number, name: string}[] = []
   let currTimestamp: number | null = null
   for (const pair of pairs) {
