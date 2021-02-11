@@ -43,6 +43,8 @@ export class Checker {
 
       // logger.debug
       console.log(`New timestamp: ${this.lastTimestamp}`)
+    } else {
+      console.log('No new tokens on uniswap exchange')
     }
   }
 
